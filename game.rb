@@ -1,5 +1,6 @@
 require_relative 'player'
-require_relative 'snakeandladder'
+require_relative 'snake_and_ladder'
+
 puts "\t\tSNAKE AND LADDERS GAME"
 puts "Enter your name"
 puts "Player 1:"

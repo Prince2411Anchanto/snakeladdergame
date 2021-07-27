@@ -2,17 +2,24 @@ class SnakeAndLadder
     def initialize(player1, player2)
         @ladder_message = "\nHurray! You climb a ladder"
         @snake_message = "\nBitten by snake!"
+        @player1 = player1
+        @player2 = player2
+        snake_hash
+        ladders_hash
+    end
+
+    def snake_hash
         @snake_hash = {
                 17=> 7, 54=> 34, 62=> 19, 64=> 60, 87=> 36, 93=> 73, 95=>75, 98=> 79
                 }  
-                    
+    end
+
+    def ladders_hash
         @ladders_hash = {
                 1=> 38, 4=> 14, 9=> 31, 21=> 42, 28=> 84, 51=> 67, 72=>91, 80=> 99
                 }
-        @player1 = player1
-        @player2 = player2
     end
-
+    
     def play_game
         turn = 1
         puts "Welcome to snake n ladders #{@player1.name} & #{@player2.name}"
