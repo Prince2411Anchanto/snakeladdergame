@@ -1,60 +1,55 @@
 class SnakeAndLadder
-    def initialize
+    def initialize(player1, player2)
         @ladder_message = "\nHurray! You climb a ladder"
         @snake_message = "\nBitten by snake!"
+        @player1 = player1
+        @player2 = player2
+        snake_hash
+        ladders_hash
+    end
 
+    def snake_hash
         @snake_hash = {
                 17=> 7, 54=> 34, 62=> 19, 64=> 60, 87=> 36, 93=> 73, 95=>75, 98=> 79
                 }  
-                    
+    end
+
+    def ladders_hash
         @ladders_hash = {
                 1=> 38, 4=> 14, 9=> 31, 21=> 42, 28=> 84, 51=> 67, 72=>91, 80=> 99
                 }
     end
-
-    #Start the game and gets player's name
-    def start_game
-        puts "\t\tSNAKE AND LADDERS GAME"
-        puts "Enter your name"
-        puts "Player 1:"
-        @player1 = gets.chomp
-        puts "Player 2:"
-        @player2 = gets.chomp
-        puts "Welcome to snake n ladders #{@player1} & #{@player2}"
-    end
-
+    
     def play_game
-        position1 = 0
-        position2 = 0
         turn = 1
+        puts "Welcome to snake n ladders #{@player1.name} & #{@player2.name}"
         puts "*********The game starts*********"
         #An infinte loop till player1 or player2 wins the game
-        while !(position1 == 100 || position2 ==100)
+        while !(@player1.position == 100 || @player2.position ==100)
             puts "\t\tSCORE-BOARD SNAKES-N-LADDERS"
-            puts "#{@player1}: #{position1}\t #{@player2}: #{position2}"
+            puts "#{@player1.name}: #{@player1.position}\t #{@player2.name}: #{@player2.position}"
             puts "Press enter to roll dice or \'q\' to quit the game"
-            puts turn == 1 ?  "#{@player1}'s turn" :  "#{@player2}'s turn"
+            puts turn == 1 ?  "#{@player1.name}'s turn" :  "#{@player2.name}'s turn"
             response = gets.chomp
             if response.downcase != "q"
                 if turn == 1
-                    position1 = make_move(position1)
+                    @player1.position = make_move(@player1.position)
                     turn = 0
                 else
-                    position2 = make_move(position2)
+                    @player2.position = make_move(@player2.position)
                     turn = 1
                 end
             else
                 if turn == 1
-                    puts "#{@player1} quits! \n#{@player2} won!"
+                    puts "#{@player1.name} quits! \n#{@player2.name} won!"
                 else
-                    puts "#{@player2} quits! \n#{@player1} won!"
+                    puts "#{@player2.name} quits! \n#{@player1.name} won!"
                 end
                 break
             end
         end
-        puts position1 == 100 ? "\t#{@player1} won!" : position2 == 100 ? "\t#{@player2} won!": ""
-    
-        play_again
+        puts @player1.position == 100 ? "\t#{@player1.name} won!" : @player2.position == 100 ? "\t#{@player2.name} won!": ""
+        # play_again
     end
 
     private 
@@ -96,19 +91,16 @@ class SnakeAndLadder
         position
     end
     
-    def play_again
-        puts "Do u want to play another game?(y for yes any key to exit)"
-        response = gets.chomp
+    # def play_again
+    #     puts "Do u want to play another game?(y for yes any key to exit)"
+    #     response = gets.chomp
     
-        if response == "y"
-            play_game
-        else
-            puts "See you again!"
-        end
-    end
+    #     if response == "y"
+    #         @player1.position(0)
+    #         @player2.position(0)
+    #         play_game
+    #     else
+    #         puts "See you again!"
+    #     end
+    # end
 end
-
-game = SnakeAndLadder.new
-game.start_game
-game.play_game
-
