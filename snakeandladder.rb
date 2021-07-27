@@ -97,35 +97,3 @@ class SnakeAndLadder
     #     end
     # end
 end
-
-class Player
-    def initialize(name="", position = 0)
-        @name = name
-        @position = position
-    end
-    def name=(name)
-        @name = name
-    end
-    def position=(pos)
-        @position = pos
-    end
-    def name
-        @name
-    end
-    def position
-        @position
-    end
-end
-
-puts "\t\tSNAKE AND LADDERS GAME"
-puts "Enter your name"
-puts "Player 1:"
-player1 = Player.new()
-player1.name = gets.chomp
-puts "Player 2:"
-player2 = Player.new()
-player2.name = gets.chomp
-
-game = SnakeAndLadder.new(player1, player2)
-game.play_game
-
